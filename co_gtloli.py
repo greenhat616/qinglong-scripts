@@ -30,7 +30,7 @@ r = requests.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=q
 print(r.status_code)
 # print(r.headers)
 print(r.text)
-notify_message += '社区签到: ' + r.status_code + ' ' + r.text + '\n'
+notify_message += '社区签到: ' + str(r.status_code) + ' ' + r.text + '\n'
 
 # 胖次任务
 print('领取胖次任务...')
@@ -45,7 +45,7 @@ r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=32', head
 print(r.status_code)
 # print(r.headers)
 # print(r.text)
-notify_message += '领取胖次任务: ' + r.status_code + '\n'
+notify_message += '领取胖次任务: ' + str(r.status_code) + '\n'
 
 print('完成胖次任务...')
 r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=32', headers={
@@ -59,7 +59,7 @@ r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=32', heade
 print(r.status_code)
 # print(r.headers)
 # print(r.text)
-notify_message += '完成胖次任务: ' + r.status_code + '\n'
+notify_message += '完成胖次任务: ' + str(r.status_code) + '\n'
 
 # GT 币任务
 print('领取 GT 币任务...')
@@ -74,7 +74,7 @@ r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=33', head
 print(r.status_code)
 # print(r.headers)
 # print(r.text)
-notify_message += '领取 GT 币任务: ' + r.status_code + '\n'
+notify_message += '领取 GT 币任务: ' + str(r.status_code) + '\n'
 print('完成 GT 币任务...')
 r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=33', headers={
     # 'Cookie': cookies,
@@ -87,5 +87,5 @@ r = requests.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=33', heade
 print(r.status_code)
 # print(r.headers)
 # print(r.text)
-notify_message += '完成 GT 币任务: ' + r.status_code + '\n'
+notify_message += '完成 GT 币任务: ' + str(r.status_code) + '\n'
 send('Gtloli 签到完成！', notify_message)
