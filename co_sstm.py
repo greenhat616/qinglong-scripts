@@ -62,11 +62,10 @@ if current_date != top_sign_page_date:
 is_signed = top_sign_page.find(
     'i', {'class': ['fa', 'fa-star']}) is not None
 print('是否已签到: {}'.format(is_signed))
-'''
 if is_signed == True:
     print('今日已签到，跳过签到流程！')
     exit()
-'''
+
 
 # 签到参数准备流程
 topic_id = re.search(r'https://sstm.moe/topic/(\d+)-*',
@@ -138,11 +137,13 @@ r = requests.post(url=top_sign_page_href, headers={
     'x-requested-with': 'XMLHttpRequest'
 }, cookies=cookies, data=post_params)
 print('接口返回: {}'.format(r.status_code))
-data = r.json()
-print(data)
-'''
-if data['postedByLoggedInMember'] == 1:
-    print('签到成功！')
-else:
-    print('签到失败!')
-'''
+try:
+    data = r.json()
+    if data['type'] == 'add' or data['type'] == 'redirect':
+        print('签到成功！')
+    else:
+        print('签到失败！')
+        raise Exception('签到失败！')
+except Exception:
+    print('签到内容解析失败或程序无法辨别是否成功！')
+    print(r.text)
