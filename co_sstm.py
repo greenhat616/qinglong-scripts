@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # python版本 >=3.8
-# cron "12 2 * * *" cp_sstm.py, tag: SSTM 签到
+# cron "12 2 * * *" co_sstm.py, tag: SSTM 签到
 import os
 import requests
 import datetime

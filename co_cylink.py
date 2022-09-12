@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # python版本 >=3.8
-# cron "22 2 * * *" cp_cylink.py, tag: 次元链接流量签到
+# cron "22 2 * * *" co_cylink.py, tag: 次元链接流量签到
 import os
 import requests
 from notify import send

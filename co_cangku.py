@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # python版本 >=3.8
-# cron "22 2 * * *" cp_cangku.py, tag: 仓库签到
+# cron "22 2 * * *" co_cangku.py, tag: 仓库签到
 import os
 import requests
 from notify import send

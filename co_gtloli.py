@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # python版本 >=3.8
-# cron "20 2 * * *" cp_gtloli.py, tag: Gtloli 社区签到
+# cron "20 2 * * *" co_sstm.py, tag: Gtloli 社区签到
 import os
 import requests
 from notify import send
