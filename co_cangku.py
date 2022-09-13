@@ -6,6 +6,7 @@ import requests
 import requests.utils
 from notify import send
 import urllib.parse
+import json
 
 cookie = os.getenv('CANGKU_COOKIES')
 if cookie is None:
@@ -47,6 +48,12 @@ r = s.post('https://cangku.icu/api/v1/user/signin', headers={
 # print(r.request.headers)
 print(r.status_code)
 # print(r.headers)
-print(r.json())
-notify_message += '仓库签到: ' + str(r.status_code) + ' ' + r.json() + '\n'
-send('仓库签到完成！', notify_message)
+try:
+    data = r.json()
+    print(data)
+    notify_message += '签到: {} \n{}\n'.format(r.status_code, data)
+    send('仓库签到完成！', notify_message)
+except Exception as e:
+    print(e)
+    print('签到失败！')
+    send('仓库签到失败！', '请登录青龙查看详情!')
