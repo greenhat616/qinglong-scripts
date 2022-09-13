@@ -122,7 +122,7 @@ post_params['_lastSeenID'] = '16110378'
 print('参数 {}: {}'.format('currentPage', 1))
 print('参数 {}: {}'.format('_lastSeenID', 16110378))
 
-comment = '<p>{}年{}月{}日签到。<p>'.format(now.year, now.month, now.day)
+comment = '<p>{}年{}月{}日签到。</p>'.format(now.year, now.month, now.day)
 if use_hitokoto is True:
     sentence = get_hitokoto()
     comment += '<p>{} —— {}</p>'.format(sentence['hitokoto'], sentence['from'])
