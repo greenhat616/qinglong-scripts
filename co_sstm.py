@@ -22,6 +22,7 @@ def get_hitokoto():
 cookie = os.getenv('SSTM_COOKIES')
 if cookie is None:
     print('请设置环境变量 SSTM_COOKIES')
+    send('SSTM 签到失败！', '请设置环境变量 SSTM_COOKIES')
     exit(1)
 cookies = {}
 for line in cookie.split(';'):
@@ -59,8 +60,8 @@ print('签到页日期：{}'.format(top_sign_page_date))
 if current_date != top_sign_page_date:
     print('签到页日期与当前日期不符，跳过签到流程！')
     exit()
-is_signed = top_sign_page.find(
-    'i', {'class': ['fa', 'fa-star']}) is not None
+is_signed = top_sign_page.find('span', {'class': 'ipsItemStatus'}).find(
+    'i', {'class': 'fa fa-star'}) is not None
 print('是否已签到: {}'.format(is_signed))
 if is_signed == True:
     print('今日已签到，跳过签到流程！')
@@ -141,9 +142,11 @@ try:
     data = r.json()
     if data['type'] == 'add' or data['type'] == 'redirect':
         print('签到成功！')
+        send('SSTM 签到成功！', '具体日记请登录青龙查看。')
     else:
         print('签到失败！')
         raise Exception('签到失败！')
 except Exception:
     print('签到内容解析失败或程序无法辨别是否成功！')
     print(r.text)
+    send('SSTM 签到失败！', '具体日记请登录青龙查看。')
