@@ -28,6 +28,13 @@ r = requests.post('https://cylink.moe/user/checkin', headers={
 # print(r.request.headers)
 print(r.status_code)
 # print(r.headers)
-print(r.text)
-notify_message += '流量签到: ' + str(r.status_code) + ' ' + r.text + '\n'
-send('Cylink 签到完成！', notify_message)
+try:
+    data = r.json()
+    print(data)
+    notify_message += '签到: {} \n{}\n'.format(r.status_code, data)
+    send('Cylink 签到完成！', notify_message)
+except Exception as e:
+    print(e)
+    print('签到失败！')
+    print(r.text)
+    send('Cylink 签到失败！', '请登录青龙查看详情!')

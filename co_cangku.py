@@ -56,4 +56,5 @@ try:
 except Exception as e:
     print(e)
     print('签到失败！')
+    print(r.text)
     send('仓库签到失败！', '请登录青龙查看详情!')
