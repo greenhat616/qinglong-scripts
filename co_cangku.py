@@ -3,7 +3,9 @@
 # cron "22 2 * * *" co_cangku.py, tag: 仓库签到
 import os
 import requests
+import requests.utils
 from notify import send
+import urllib.parse
 
 cookie = os.getenv('CANGKU_COOKIES')
 if cookie is None:
@@ -17,6 +19,7 @@ for line in cookie.split(';'):
 
 notify_message = ''
 s = requests.Session()
+requests.utils.add_dict_to_cookiejar(s.cookies, cookies)
 print('更新仓库 XSRF-TOKEN...')
 r = s.request('GET', 'https://cangku.moe/user', headers={
     # 'Cookie': cookies,
@@ -24,9 +27,13 @@ r = s.request('GET', 'https://cangku.moe/user', headers={
     'Referer': 'https://cangku.icu/',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
-}, cookies=cookies)
+})
 print('页面返回: %d' % r.status_code)
+# print(r.request.headers)
+# print(r.headers)
+# print(r.text)
 print('执行仓库签到...')
+cookies_dict = requests.utils.dict_from_cookiejar(s.cookies)
 r = s.post('https://cangku.icu/api/v1/user/signin', headers={
     # 'Cookie': cookies,
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
@@ -34,10 +41,12 @@ r = s.post('https://cangku.icu/api/v1/user/signin', headers={
     'Accept': 'application/json, text/javascript, */*; q=0.01',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
-}, cookies=cookies)
+    'X-XSRF-TOKEN': urllib.parse.unquote(cookies_dict['XSRF-TOKEN']),
+})
+
 # print(r.request.headers)
 print(r.status_code)
 # print(r.headers)
-print(r.text)
-notify_message += '仓库签到: ' + str(r.status_code) + ' ' + r.text + '\n'
+print(r.json())
+notify_message += '仓库签到: ' + str(r.status_code) + ' ' + r.json() + '\n'
 send('仓库签到完成！', notify_message)
