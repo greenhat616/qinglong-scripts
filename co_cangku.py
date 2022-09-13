@@ -16,8 +16,19 @@ for line in cookie.split(';'):
     cookies[name] = value
 
 notify_message = ''
+s = requests.Session()
+print('更新仓库 XSRF-TOKEN...')
+r = s.request('GET', 'https://cangku.moe/user', headers={
+    # 'Cookie': cookies,
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+    'Referer': 'https://cangku.icu/',
+    'Accept': ' */*',
+    'Accept-Encoding': 'gzip, deflate',
+    'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+}, cookies=cookies)
+print('页面返回: %d' % r.status_code)
 print('执行仓库签到...')
-r = requests.post('https://cangku.icu/api/v1/user/signin', headers={
+r = s.post('https://cangku.icu/api/v1/user/signin', headers={
     # 'Cookie': cookies,
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
     'Referer': 'https://cangku.icu/',
