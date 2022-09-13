@@ -22,7 +22,6 @@ r = s.request('GET', 'https://cangku.moe/user', headers={
     # 'Cookie': cookies,
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
     'Referer': 'https://cangku.icu/',
-    'Accept': ' */*',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
 }, cookies=cookies)
