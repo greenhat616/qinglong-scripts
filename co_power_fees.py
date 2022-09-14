@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # python版本 >=3.8
-# cron "22 2 * * *" co_cylink.py, tag: 次元链接流量签到
+# cron "1 */2 * * *" co_power_fees.py, tag: 次元链接流量签到
 import os
 import requests
 import requests.utils
@@ -72,7 +72,7 @@ if r.status_code != 200 or data['Msg'] != '成功':
 need_send = False
 for key in data['component']:
     if key['Name'] == '剩余':
-        if float(key['Value']) < 100:
+        if float(key['Value']) < 30:
             need_send = True
 
 if need_send:
