@@ -71,10 +71,11 @@ try:
         'X-Requested-With': 'XMLHttpRequest',
         'Authorization': 'Bearer {}'.format(cookie_dict['auth_token'])
     })
-    print('页面状态：{}'.fomat(r.status_code))
+    print('页面状态：{}'.format(r.status_code))
     print('页面返回：{}'.format(r.text))
-    notify_message += '页面状态：{}\n页面返回：{}\n'.format(r.status_code, r.text)
-    send('Poi 签到成功！', notify_message)
+    notify_message += '页面状态：{}\n页面返回：{}\n\n'.format(r.status_code, r.text)
+    notify_message += '提示：如果 sign 为 True 说明签到已成功'
+    send('Poi 签到完成！', notify_message)
 except Exception as e:
     print(e)
     send('Poi 签到执行失败！', '{}'.format(e))
