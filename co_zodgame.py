@@ -8,7 +8,7 @@ from notify import send
 cookie = os.getenv('ZODGAME_COOKIES')
 if cookie is None:
     print('请设置环境变量 ZODGAME_COOKIES')
-    send('Gtloli 签到执行失败！', '请设置环境变量 ZODGAME_COOKIES')
+    send('ZODGAME 签到执行失败！', '请设置环境变量 ZODGAME_COOKIES')
     exit(1)
 cookies = {}
 for line in cookie.split(';'):
@@ -35,3 +35,4 @@ print(r.status_code)
 # print(r.headers)
 print(r.text)
 notify_message += '社区签到: ' + str(r.status_code) + ' ' + r.text + '\n'
+send('[ZODGAME] 签到完成', notify_message)
