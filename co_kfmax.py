@@ -16,11 +16,8 @@ cookies = {}
 for line in cookie.split(';'):
     name, value = line.strip().split('=', 1)
     cookies[name] = value
-
-notify_message = '[绯月签到结果]\n'
-
-
 async def task():
+    notify_message = '[绯月签到结果]\n'
     async with httpx.AsyncClient(cookies=httpx.Cookies(cookies), http2=True) as client:
 
         # 获取签到页信息
@@ -60,6 +57,11 @@ async def task():
         })
         print(r.status_code)
         print(r.text)
-        notify_message += '签到成功！\n 签到奖励：{}'.format(a.text)
+        notify_message += '签到成功！\n 签到奖励：{}'.format(r.text)
         send('绯月签到执行成功！', notify_message)
-asyncio.run(task())
+try: 
+    asyncio.run(task())
+except Exception as e:
+    print(e)
+    print('签到失败！')
+    send('绯月签到执行失败！', '请到青龙面板查看日记！')
