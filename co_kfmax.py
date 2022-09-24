@@ -32,13 +32,13 @@ async def task():
         })
 
         print('页面返回状态码：', r.status_code)
-        # print(r.headers)
-        # print(r.request.headers)
-        # print(r.text)
+        print(r.headers)
+        print(r.request.headers)
+        print(r.text)
         print('尝试解析页面...')
         dom = BeautifulSoup(r.text, 'lxml')
         a = dom.find('table').findChild('a')
-        if a is None:
+        if a is None or a.text == '今天的每日奖励已经领过了，请明天继续。':
             print('已签到')
             print(r.text)
             notify_message += '已签到'
