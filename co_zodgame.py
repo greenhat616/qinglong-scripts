@@ -17,22 +17,26 @@ for line in cookie.split(';'):
 
 notify_message = '[ZODGAME 签到结果]\n'
 print('执行社区签到任务...')
-r = requests.post('https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1', headers={
-    # 'Cookie': cookies,
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
-    'Referer': 'https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
-},
-    cookies=cookies,
-    data={
-    'formhash':	'59f2dc3e',
-    'qdxq':	'kx'
-})
-# print(r.request.headers)
-print(r.status_code)
-# print(r.headers)
-print(r.text)
-notify_message += '社区签到: ' + str(r.status_code) + ' ' + r.text + '\n'
-send('[ZODGAME] 签到完成', notify_message)
+try:
+    r = requests.post('https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1', headers={
+        # 'Cookie': cookies,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+        'Referer': 'https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+    },
+        cookies=cookies,
+        data={
+        'formhash':	'59f2dc3e',
+        'qdxq':	'kx'
+    })
+    # print(r.request.headers)
+    print(r.status_code)
+    # print(r.headers)
+    print(r.text)
+    notify_message += '社区签到: ' + str(r.status_code) + ' ' + r.text + '\n'
+    send('[ZODGAME] 签到完成', notify_message)
+except Exception as e:
+    print(e)
+    send('[ZODGAME] 签到失败', '签到失败，原因为: ' + str(e))

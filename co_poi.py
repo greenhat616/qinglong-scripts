@@ -55,7 +55,7 @@ try:
         'Authorization': 'Bearer {}'.format(cookie_dict['auth_token'])
     })
     print('页面状态：{}'.format(r.status_code))
-    print('页面返回：{}'.format(r.text))
+    print('页面返回：{}'.format(r.json()))
     data = r.json()
     if data['signed'] == True:
         print('今日已签到')
@@ -72,8 +72,8 @@ try:
         'Authorization': 'Bearer {}'.format(cookie_dict['auth_token'])
     })
     print('页面状态：{}'.format(r.status_code))
-    print('页面返回：{}'.format(r.text))
-    notify_message += '页面状态：{}\n页面返回：{}\n\n'.format(r.status_code, r.text)
+    print('页面返回：{}'.format(r.json()))
+    notify_message += '页面状态：{}\n页面返回：{}\n\n'.format(r.status_code, r.json())
     notify_message += '提示：如果 sign 为 True 说明签到已成功'
     send('Poi 签到完成！', notify_message)
 except Exception as e:
