@@ -32,9 +32,9 @@ async def task():
         })
 
         print('页面返回状态码：', r.status_code)
-        print(r.headers)
-        print(r.request.headers)
-        print(r.text)
+        # print(r.headers)
+        # print(r.request.headers)
+        # print(r.text)
         print('尝试解析页面...')
         dom = BeautifulSoup(r.text, 'lxml')
         a = dom.find('table').findChild('a')
