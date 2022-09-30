@@ -61,12 +61,14 @@ try:
     print('签到页日期：{}'.format(top_sign_page_date))
     if current_date != top_sign_page_date:
         print('签到页日期与当前日期不符，跳过签到流程！')
+        send('SSTM 签到失败！', '签到页日期与当前日期不符，跳过签到流程！')
         exit()
     is_signed = top_sign_page.find('span', {'class': 'ipsItemStatus'}).find(
         'i', {'class': 'fa fa-star'}) is not None
     print('是否已签到: {}'.format(is_signed))
     if is_signed == True:
         print('今日已签到，跳过签到流程！')
+        send('SSTM 签到失败！', '今日已签到，跳过签到流程！')
         exit()
 
     # 签到参数准备流程
