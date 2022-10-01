@@ -17,7 +17,7 @@ try:
     for line in cookie.split(';'):
         name, value = line.strip().split('=', 1)
         cookies[name] = value
-    print(cookies)
+    # print(cookies)
 
     notify_message = '[Poi 签到结果]\n'
     s = requests.Session()

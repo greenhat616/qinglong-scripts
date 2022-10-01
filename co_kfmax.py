@@ -56,7 +56,7 @@ async def task():
             'cache-control': 'max-age=0'
         })
         print(r.status_code)
-        print(r.text)
+        #print(r.text)
         notify_message += '签到成功！\n 签到奖励：{}'.format(r.text)
         send('绯月签到执行成功！', notify_message)
 try: 
