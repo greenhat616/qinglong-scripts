@@ -55,6 +55,7 @@ try:
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
     # 'Content-Type': 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'
+    'OpenIDToken': cookies['openid'],
 })
 except Exception as e:
     print(e)
