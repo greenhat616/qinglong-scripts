@@ -57,7 +57,7 @@ async def task():
         })
         print(r.status_code)
         print(r.text)
-        notify_message += '签到成功！\n 签到奖励：{}'.format(r.text)
+        notify_message += '签到成功！\n 签到奖励：{}'.format(a.text)
         send('绯月签到执行成功！', notify_message)
 try: 
     asyncio.run(task())

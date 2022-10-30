@@ -23,10 +23,10 @@ try:
     s = requests.Session()
     requests.utils.add_dict_to_cookiejar(s.cookies, cookies)
     print('更新仓库 XSRF-TOKEN...')
-    r = s.request('GET', 'https://cangku.life/user', headers={
+    r = s.request('GET', 'https://cangku.moe/user', headers={
         # 'Cookie': cookies,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-        'Referer': 'https://cangku.life/',
+        'Referer': 'https://cangku.moe/',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
     })
@@ -36,10 +36,10 @@ try:
     # print(r.text)
     print('执行仓库签到...')
     cookies_dict = requests.utils.dict_from_cookiejar(s.cookies)
-    r = s.post('https://cangku.life/api/v1/user/signin', headers={
+    r = s.post('https://cangku.moe/api/v1/user/signin', headers={
         # 'Cookie': cookies,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-        'Referer': 'https://cangku.life/',
+        'Referer': 'https://cangku.moe/',
         'Accept': 'application/json, text/javascript, */*; q=0.01',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
