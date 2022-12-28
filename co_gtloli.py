@@ -6,6 +6,7 @@ import requests
 from notify import send
 import httpx
 import asyncio
+from bs4 import BeautifulSoup
 
 cookie = os.getenv('GTLOLI_COOKIES')
 if cookie is None:
@@ -21,8 +22,27 @@ async def task():
     notify_message = '[Gtloli 签到结果]\n'
     async with httpx.AsyncClient(cookies=httpx.Cookies(cookies), http2=True) as client:
         try:
+            print('获取 formhash...')
+            r = await client.get('https://www.gtloli.gay/forum.php', headers= {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+                'Referer': 'https://www.gtloli.gay/forum.php',
+                'Accept': 'application/xml; charset=gbk',
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+            })
+            print(r.status_code)
+            if r.status_code != 200:
+                raise Exception('获取 Formhash 失败！')
+            # print(r.text)
+            dom = BeautifulSoup(r.text, 'lxml')
+            input = dom.find('input', {
+                'name': 'formhash'
+            })
+            # print(input)
+            formhash = input.attrs['value']
+            print('formhash: {}'.format(formhash))
             print('执行社区签到任务...')
-            r = await client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash=ed2aa250&inajax=1&ajaxtarget=midaben_sign', headers={
+            r = await client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash={}&inajax=1&ajaxtarget=midaben_sign'.format(formhash), headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/forum.php',
