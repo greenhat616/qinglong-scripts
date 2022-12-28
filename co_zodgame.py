@@ -38,9 +38,9 @@ async def task():
         input = dom.find('input', {
             'name': 'formhash'
         })
-        print(input)
-        print(input.attrs['value'])
-        return
+        # print(input)
+        formhash = input.attrs['value']
+        print('formhash: {}'.format(formhash))
         print('执行社区签到任务...')
         r = await client.post('https://zodgame.xyz/plugin.php?id=dsu_paulsign:sign&operation=qiandao&infloat=1&inajax=1', headers={
             # 'Cookie': cookies,
@@ -51,7 +51,7 @@ async def task():
             'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
         },
             data={
-            'formhash':	'59f2dc3e',
+            'formhash':	formhash,
             'qdxq':	'kx'
         })
         # print(r.request.headers)
