@@ -22,7 +22,7 @@ async def task():
     async with httpx.AsyncClient(cookies=httpx.Cookies(cookies), http2=True) as client:
         try:
             print('执行社区签到任务...')
-            r = await client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash=5909e57e&inajax=1&ajaxtarget=midaben_sign', headers={
+            r = await client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash=ed2aa250&inajax=1&ajaxtarget=midaben_sign', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/forum.php',
@@ -30,15 +30,15 @@ async def task():
                 'Accept-Encoding': 'gzip, deflate',
                 'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
             })
-            # print(r.request.headers)
+            print(r.request.headers)
             print(r.status_code)
-            # print(r.headers)
+            print(r.headers)
             print(r.text)
             notify_message += '社区签到: ' + str(r.status_code) + ' ' + r.text + '\n'
             
             # 胖次任务
             print('领取胖次任务...')
-            r = client.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=32', headers={
+            r = await client.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=32', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/home.php?mod=task',
