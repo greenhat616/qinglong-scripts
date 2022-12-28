@@ -22,7 +22,7 @@ async def task():
     async with httpx.AsyncClient(cookies=httpx.Cookies(cookies), http2=True) as client:
         try:
             print('执行社区签到任务...')
-            r = client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash=5909e57e&inajax=1&ajaxtarget=midaben_sign', headers={
+            r = await client.get('https://www.gtloli.gay/plugin.php?id=k_misign:sign&operation=qiandao&format=button&formhash=5909e57e&inajax=1&ajaxtarget=midaben_sign', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/forum.php',
@@ -52,7 +52,7 @@ async def task():
             notify_message += '领取胖次任务: ' + str(r.status_code) + '\n'
 
             print('完成胖次任务...')
-            r = client.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=32', headers={
+            r = await client.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=32', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/home.php?mod=task&item=doing',
@@ -67,7 +67,7 @@ async def task():
 
             # GT 币任务
             print('领取 GT 币任务...')
-            r = client.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=33', headers={
+            r = await client.get('https://www.gtloli.gay/home.php?mod=task&do=apply&id=33', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/home.php?mod=task',
@@ -80,7 +80,7 @@ async def task():
             # print(r.text)
             notify_message += '领取 GT 币任务: ' + str(r.status_code) + '\n'
             print('完成 GT 币任务...')
-            r = client.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=33', headers={
+            r = await client.get('https://www.gtloli.gay/home.php?mod=task&do=draw&id=33', headers={
                 # 'Cookie': cookies,
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
                 'Referer': 'https://www.gtloli.gay/home.php?mod=task&item=doing',
