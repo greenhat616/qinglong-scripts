@@ -26,11 +26,11 @@ try:
 
     # 刷新 Cookies
     print('刷新 Cookies...')
-    r = s.get('https://poi6.com/', headers={
+    r = s.get('https://poi6.net/', headers={
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
         'Accept-Encoding': 'gzip, deflate',
-        'Referer': 'https://poi6.com/',
+        'Referer': 'https://poi6.net/',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0'
     })
 
@@ -45,11 +45,11 @@ try:
 
     # 获取心跳包
     cookie_dict = requests.utils.dict_from_cookiejar(s.cookies)
-    r = s.get('https://poi6.com/heartbeat', headers={
+    r = s.get('https://poi6.net/heartbeat', headers={
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
         'Accept-Encoding': 'gzip, deflate',
-        'Referer': 'https://poi6.com/',
+        'Referer': 'https://poi6.net/',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
         'X-Requested-With': 'XMLHttpRequest',
         'Authorization': 'Bearer {}'.format(cookie_dict['auth_token'])
@@ -62,11 +62,11 @@ try:
         send('Poi 签到失败！', '今日已签到，请明天再来哦！')
         exit(0)
     cookie_dict = requests.utils.dict_from_cookiejar(s.cookies)
-    r = s.get('https://poi6.com/heartbeat', headers={
+    r = s.get('https://poi6.net/heartbeat', headers={
         'Accept': 'application/json, text/plain, */*',
         'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
         'Accept-Encoding': 'gzip, deflate',
-        'Referer': 'https://poi6.com/',
+        'Referer': 'https://poi6.net/',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
         'X-Requested-With': 'XMLHttpRequest',
         'Authorization': 'Bearer {}'.format(cookie_dict['auth_token'])
