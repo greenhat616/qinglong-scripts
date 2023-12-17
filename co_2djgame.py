@@ -8,10 +8,10 @@ import httpx
 import asyncio
 from bs4 import BeautifulSoup
 
-cookie = os.getenv('2DJ_COOKIES')
+cookie = os.getenv('_2DJ_COOKIES')
 if cookie is None:
-    print('请设置环境变量 2DJ_COOKIES')
-    send('2DJGame 签到执行失败！', '请设置环境变量 2DJ_COOKIES')
+    print('请设置环境变量 _2DJ_COOKIES')
+    send('2DJGame 签到执行失败！', '请设置环境变量 _2DJ_COOKIES')
     exit(1)
 cookies = {}
 for line in cookie.split(';'):
