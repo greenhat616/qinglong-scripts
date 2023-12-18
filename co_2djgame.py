@@ -59,6 +59,20 @@ async def task():
             print(r.status_code)
             # print(r.headers)
             # print(r.text)
+            # notify_message += '每日任务: ' + str(r.status_code) + '\n'
+            
+            print('完成每日任务...')
+            r = await client.get('https://bbs4.2djgame.net/home/home.php?mod=task&do=draw&id=1', headers={
+                # 'Cookie': cookies,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+                'Referer': 'https://bbs4.2djgame.net/home/home.php?mod=task&item=doing',
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+            })
+            # print(r.request.headers)
+            print(r.status_code)
+            # print(r.headers)
+            # print(r.text)
             notify_message += '每日任务: ' + str(r.status_code) + '\n'
             
             # 今日之星 
@@ -70,6 +84,20 @@ async def task():
                 'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
             })
             
+            # print(r.request.headers)
+            print(r.status_code)
+            # print(r.headers)
+            # print(r.text)
+            # notify_message += '今日之星: ' + str(r.status_code) + '\n'
+            
+            print('完成今日之星...')
+            r = await client.get('https://bbs4.2djgame.net/home/home.php?mod=task&do=draw&id=6', headers={
+                # 'Cookie': cookies,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+                'Referer': 'https://bbs4.2djgame.net/home/home.php?mod=task&item=doing',
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+            })
             # print(r.request.headers)
             print(r.status_code)
             # print(r.headers)
@@ -89,7 +117,21 @@ async def task():
             print(r.status_code)
             # print(r.headers)
             # print(r.text)
-            notify_message += '神之一手任务: ' + str(r.status_code) + '\n'
+            # notify_message += '神之一手任务: ' + str(r.status_code) + '\n'
+
+            print('完成神之一手...')
+            r = await client.get('https://bbs4.2djgame.net/home/home.php?mod=task&do=draw&id=5', headers={
+                # 'Cookie': cookies,
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+                'Referer': 'https://bbs4.2djgame.net/home/home.php?mod=task&item=doing',
+                'Accept-Encoding': 'gzip, deflate',
+                'Accept-Language': 'zh-CN,en-US;q=0.7,en;q=0.3',
+            })
+            # print(r.request.headers)
+            print(r.status_code)
+            # print(r.headers)
+            # print(r.text)
+            notify_message += '神之一手: ' + str(r.status_code) + '\n'
 
             send('2DJGame 签到完成！', notify_message)
         except Exception as e:
